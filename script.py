@@ -109,7 +109,7 @@ plt.show()
 ##########################################
 
 # first, we need to turn our problem to a supervised learning problem
-
+# AR(p)
 p = 14
 ts_use = ts_ma
 
@@ -120,13 +120,15 @@ for i in range(ts_use.shape[0] - p):
 X = df_sl.iloc[:, :-1].values
 y = df_sl.iloc[:, -1].values
 
-
-# second, we splot our data set into training and testing sets
+#####
+## second, we split our data set into training and testing sets
+#####
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, shuffle = False)
 
-
-# feature scaling
+#####
+## feature scaling
+#####
 
 scaler = StandardScaler()
 scaler.fit(X_train)
@@ -134,19 +136,25 @@ X_train = scaler.transform(X_train)
 X_test = scaler.transform(X_test)
 
 
-
-# AR(p) - linear regression
-
+#####
+## linear regression 
+#####
 model = LinearRegression()
 model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
-y_pred
 
+####
+## predicted value
+####
+x_ = [ts_ma[-p:]]
+x_ = scaler.transform(x_)
+y_ = model.predict(x_)
+#x_.shape
+y_
 
-
-
-# quality of predictions, finding the best hyperparam ?
-
+#####
+## quality of predictions, finding the best hyperparam 
+#####
 r2_score(y_test, y_pred)
     
     
