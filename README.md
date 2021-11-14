@@ -7,10 +7,16 @@ The goal of this study is to produce a model that is able to predict the daily n
 ### Methodology
 First step is to pre-process the data by extracting a time series that is consistent with our goal. Smoothing techniques are then used to deal with the non-stationnarity of the resulting time series. An auto-regressive model AR(p) of order p is then trained on a training set where the order of the AR model is used as a design parameter. To estimate the models parameters, the normal equation from linear regression was used.
 
+![alt text](https://raw.githubusercontent.com/lvl0-statistician/bicycle-traffic-modeling/main/images/ts_ma.png)
+
 Please see 'bike_prediction.pdf' for further details.
 
 ### Results
 
 R^2 scores are then reported on the testing set and are used to select the best auto-regressive order. The optimal order found is p=9.
+
+![alt text](https://raw.githubusercontent.com/lvl0-statistician/bicycle-traffic-modeling/main/images/r2_p.png)
+
+
 The predicted number of bikes passing through the sensor between 00:00 AM and 9:00 AM is 307 bicycles.
 
